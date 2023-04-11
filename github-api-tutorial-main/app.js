@@ -9,20 +9,27 @@ gitHubForm.addEventListener('submit', (e) => {
 
     // Get the GitHub username input field on the DOM
     let usernameInput = document.getElementById('usernameInput');
-
     // Get the value of the GitHub username input field
     let gitHubUsername = usernameInput.value;
 
+    // Get the GitHub repository input field on the DOM
+    let repositoryInput = document.getElementById('repositoryInput');
+    // Get the value of the GitHub repository input field
+    let githubRepository = repositoryInput.value;
+    
+    // Get the ul with id of userRepos
+    let ul = document.getElementById('userRepos');
+
+    // Empty content of the ul from previous executions
+    ul.innerHTML = ''
+
     // Run GitHub API function, passing in the GitHub username
-    requestUserRepos(gitHubUsername)
+    requestUserRepos(gitHubUsername, githubRepository)
         .then(response => response.json()) // parse response into json
         .then(data => {
             // update html with data from github
             for (let i in data) {
-                // Get the ul with id of userRepos
-
                 if (data.message === "Not Found") {
-                    let ul = document.getElementById('userRepos');
 
                     // Create variable that will create li's to be added to ul
                     let li = document.createElement('li');
@@ -30,14 +37,16 @@ gitHubForm.addEventListener('submit', (e) => {
                     // Add Bootstrap list item class to each li
                     li.classList.add('list-group-item')
                     // Create the html markup for each li
-                    li.innerHTML = (`
-                <p><strong>No account exists with username:</strong> ${gitHubUsername}</p>`);
+                
+                    // Create the html markup for each li
+                    li.innerHTML = (
+                        `<p><strong>No commits exist with username:</strong> ${gitHubUsername} <strong> and repository ${githubRepository} </strong></p>`
+                    );
+
                     // Append each li to the ul
                     ul.appendChild(li);
                 } else {
 
-                    let ul = document.getElementById('userRepos');
-
                     // Create variable that will create li's to be added to ul
                     let li = document.createElement('li');
 
@@ -46,10 +55,9 @@ gitHubForm.addEventListener('submit', (e) => {
 
                     // Create the html markup for each li
                     li.innerHTML = (`
-                <p><strong>Repo:</strong> ${data[i].name}</p>
-                <p><strong>Description:</strong> ${data[i].description}</p>
-                <p><strong>URL:</strong> <a href="${data[i].html_url}">${data[i].html_url}</a></p>
-            `);
+                        <p><strong>Mensagem:</strong> ${data[i].commit.message}</p>
+                        <p><strong>Data:</strong> ${data[i].commit.autor.date}</p>
+                    `);
 
                     // Append each li to the ul
                     ul.appendChild(li);
@@ -58,7 +66,7 @@ gitHubForm.addEventListener('submit', (e) => {
         })
 })
 
-function requestUserRepos(username) {
+function requestUserRepos(username, repository) {
     // create a variable to hold the `Promise` returned from `fetch`
-    return Promise.resolve(fetch(`https://api.github.com/users/${username}/repos`));
+    return Promise.resolve(fetch(`https://api.github.com/repos/${username}/${repository}/commits`));
 }
