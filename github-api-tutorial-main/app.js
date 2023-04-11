@@ -28,25 +28,26 @@ gitHubForm.addEventListener('submit', (e) => {
         .then(response => response.json()) // parse response into json
         .then(data => {
             // update html with data from github
-            for (let i in data) {
-                if (data.message === "Not Found") {
+            if (data.message === "Not Found") {
 
-                    // Create variable that will create li's to be added to ul
-                    let li = document.createElement('li');
+                // Create variable that will create li's to be added to ul
+                let li = document.createElement('li');
 
-                    // Add Bootstrap list item class to each li
-                    li.classList.add('list-group-item')
-                    // Create the html markup for each li
+                // Add Bootstrap list item class to each li
+                li.classList.add('list-group-item')
+                // Create the html markup for each li
+            
+                // Create the html markup for each li
+                li.innerHTML = (
+                    `<p><strong>Could not find repository with username:</strong> ${gitHubUsername} <strong> and name: </strong> ${githubRepository} </p>`
+                );
+
+                // Append each li to the ul
+                ul.appendChild(li);
                 
-                    // Create the html markup for each li
-                    li.innerHTML = (
-                        `<p><strong>No commits exist with username:</strong> ${gitHubUsername} <strong> and repository ${githubRepository} </strong></p>`
-                    );
+            } else {
 
-                    // Append each li to the ul
-                    ul.appendChild(li);
-                } else {
-
+                for (let i in data) {
                     // Create variable that will create li's to be added to ul
                     let li = document.createElement('li');
 
@@ -56,12 +57,13 @@ gitHubForm.addEventListener('submit', (e) => {
                     // Create the html markup for each li
                     li.innerHTML = (`
                         <p><strong>Mensagem:</strong> ${data[i].commit.message}</p>
-                        <p><strong>Data:</strong> ${data[i].commit.autor.date}</p>
+                        <p><strong>Data:</strong> ${data[i].commit.author.date}</p>
                     `);
 
                     // Append each li to the ul
                     ul.appendChild(li);
                 }
+
             }
         })
 })
