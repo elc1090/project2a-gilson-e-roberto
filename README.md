@@ -16,15 +16,10 @@ Gilson Garcia e Roberto Mahl
 
 #### Créditos
 
-Preencha aqui uma lista detalhada de recursos aproveitados no projeto, por exemplo:
-- URL de tutoriais/vídeos consultados
-- Créditos para colegas que colaboraram
-
 
 #### Bastidores
 
-
-Preencha aqui um breve relato dos bastidores da realização deste exercício, com uma parte focada no trabalho em dupla e outra individual com impressões de cada participante.
+Gilson ficou no HTML e Roberto ficou no JavaScript. Os dois já tinham experiências com frameworks, então a experiência de lidar diretamente com o DOM foi super interessante. Visualizar como as coisas funcionam por debaixo dos panos não só é um novo aprendizado como auxilia na compreensão do funcionamento dos frameworks que usamos.
 
 
 
