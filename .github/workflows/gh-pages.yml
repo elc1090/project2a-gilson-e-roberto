@@ -15,4 +15,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./github-api-tutorial-main # substitua pelo caminho para o seu arquivo HTML
+          publish_dir: ./github-api-tutorial-main # caminho para o seu arquivo HTML
