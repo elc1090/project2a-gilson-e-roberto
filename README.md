@@ -1,4 +1,4 @@
-![Screenshot do projeto](https://mdswanson.com/static/chops-ux-step-4.png "Screenshot do projeto").
+![Screenshot do projeto](screenshot.png "Screenshot do projeto").
 
 
 #### Daploy
