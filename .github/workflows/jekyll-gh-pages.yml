@@ -51,4 +51,4 @@ jobs:
         uses: actions/deploy-pages@v2
         with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: .project2a-gilson-e-roberto/github-api-tutorial-main
+            publish_dir: ./github-api-tutorial-main
